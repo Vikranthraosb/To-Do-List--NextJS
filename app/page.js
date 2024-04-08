@@ -29,11 +29,12 @@ const page = () => {
         <motion.li
           drag
           dragConstraints={{
-            top: -20,
-            left: -50,
-            right: 50,
-            bottom: 0,
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 400,
           }}
+          whileDrag={{ borderColor: "green", borderWidth: 2 }}
           className="bg-zinc-700 rounded-xl flex items-center justify-between m-4"
           key={index}
         >
