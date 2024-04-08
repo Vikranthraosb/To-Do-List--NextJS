@@ -1,5 +1,6 @@
 "use client"; // in next js we have to tell where were working actually
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const page = () => {
   const [title, settitle] = useState("");
@@ -25,7 +26,14 @@ const page = () => {
   if (maintask.length > 0) {
     renderTask = maintask.map((task, index) => {
       return (
-        <li
+        <motion.li
+          drag
+          dragConstraints={{
+            top: -20,
+            left: -50,
+            right: 50,
+            bottom: 0,
+          }}
           className="bg-zinc-700 rounded-xl flex items-center justify-between m-4"
           key={index}
         >
@@ -45,7 +53,7 @@ const page = () => {
           >
             DELETE
           </button>
-        </li>
+        </motion.li>
       );
     });
   }
@@ -80,7 +88,7 @@ const page = () => {
           </button>
         </form>
       </div>
-      <div className="border-t-[1.2px] border-zinc-600">
+      <div className="border-t-[1.2px] border-zinc-600 ">
         <ul>{renderTask}</ul>
       </div>
     </div>
