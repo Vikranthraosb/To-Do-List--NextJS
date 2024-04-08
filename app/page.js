@@ -12,7 +12,11 @@ const page = () => {
     setdesc("");
     console.log(maintask);
   };
-
+  const deletehandler = (index) => {
+    let copytask = [...maintask];
+    copytask.splice(index, 1);
+    setmaintask(copytask);
+  };
   let renderTask = (
     <h2 className="text-center text-zinc-500 m-7 text-xl">
       No Tasks Available
@@ -21,11 +25,26 @@ const page = () => {
   if (maintask.length > 0) {
     renderTask = maintask.map((task, index) => {
       return (
-        <li>
-          <div className="flex items-center justify-around text-xl m-3 bg-zinc-700 p-3 rounded-xl ">
-            <h5 className="font-semibold text-zinc-300">{task.title}</h5>
-            <h6 className="font-semibold text-zinc-300">{task.desc}</h6>
+        <li
+          className="bg-zinc-700 rounded-xl flex items-center justify-between m-4"
+          key={index}
+        >
+          <div className="flex items-center justify-around p-3 w-4/5">
+            <h5 className="font-semibold text-zinc-300  text-xl">
+              {task.title}
+            </h5>
+            <h6 className="font-semibold text-zinc-300  text-xl">
+              {task.desc}
+            </h6>
           </div>
+          <button
+            className="px-1 py-2 m-2 bg-red-500 text-zinc-200 rounded-md mr-8 font-semibold text-sm"
+            onClick={() => {
+              deletehandler(index);
+            }}
+          >
+            DELETE
+          </button>
         </li>
       );
     });
